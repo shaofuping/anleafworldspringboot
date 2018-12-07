@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper mapper;
 
     @Override
-    public User getUserById(Long id) {
+    public User getUserById(Integer id) {
         return mapper.selectByPrimaryKey(id);
     }
 
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public WidelyResult delUserById(Long id) {
+    public WidelyResult delUserById(Integer id) {
 
         mapper.deleteByPrimaryKey(id);
         return WidelyResult.ok();

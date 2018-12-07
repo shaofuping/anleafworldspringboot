@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="top.actualself.springboot.demo_interceptor.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="top.actualself.springboot.demo_interceptor.model.User" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="created" property="created" jdbcType="TIMESTAMP" />
-    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="is_active" property="isActive" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, username, password, phone, email, created, updated
+    id, login_account, user_name, login_password, mobile, unit_id, is_active
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="top.actualself.springboot.demo_interceptor.model.UserExample" >
     select
@@ -78,7 +78,7 @@
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from tb_user
+    from user_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,108 +86,108 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from tb_user
-    where id = #{id,jdbcType=BIGINT}
+    from user_info
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from tb_user
-    where id = #{id,jdbcType=BIGINT}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="top.actualself.springboot.demo_interceptor.model.UserExample" >
-    delete from tb_user
+    delete from user_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="top.actualself.springboot.demo_interceptor.model.User" >
-    insert into tb_user (id, username, password, 
-      phone, email, created, 
-      updated)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
-      #{updated,jdbcType=TIMESTAMP})
+    insert into user_info (id, login_account, user_name, 
+      login_password, mobile, unit_id, 
+      is_active)
+    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{loginPassword,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{unitId,jdbcType=VARCHAR}, 
+      #{isActive,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="top.actualself.springboot.demo_interceptor.model.User" >
-    insert into tb_user
+    insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="username != null" >
-        username,
+      <if test="loginAccount != null" >
+        login_account,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="userName != null" >
+        user_name,
       </if>
-      <if test="phone != null" >
-        phone,
+      <if test="loginPassword != null" >
+        login_password,
       </if>
-      <if test="email != null" >
-        email,
+      <if test="mobile != null" >
+        mobile,
       </if>
-      <if test="created != null" >
-        created,
+      <if test="unitId != null" >
+        unit_id,
       </if>
-      <if test="updated != null" >
-        updated,
+      <if test="isActive != null" >
+        is_active,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
+      <if test="loginAccount != null" >
+        #{loginAccount,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="created != null" >
-        #{created,jdbcType=TIMESTAMP},
+      <if test="unitId != null" >
+        #{unitId,jdbcType=VARCHAR},
       </if>
-      <if test="updated != null" >
-        #{updated,jdbcType=TIMESTAMP},
+      <if test="isActive != null" >
+        #{isActive,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="top.actualself.springboot.demo_interceptor.model.UserExample" resultType="java.lang.Integer" >
-    select count(*) from tb_user
+    select count(*) from user_info
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update tb_user
+    update user_info
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.loginAccount != null" >
+        login_account = #{record.loginAccount,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
+      <if test="record.loginPassword != null" >
+        login_password = #{record.loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
       </if>
-      <if test="record.created != null" >
-        created = #{record.created,jdbcType=TIMESTAMP},
+      <if test="record.unitId != null" >
+        unit_id = #{record.unitId,jdbcType=VARCHAR},
       </if>
-      <if test="record.updated != null" >
-        updated = #{record.updated,jdbcType=TIMESTAMP},
+      <if test="record.isActive != null" >
+        is_active = #{record.isActive,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -195,50 +195,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update tb_user
-    set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      created = #{record.created,jdbcType=TIMESTAMP},
-      updated = #{record.updated,jdbcType=TIMESTAMP}
+    update user_info
+    set id = #{record.id,jdbcType=INTEGER},
+      login_account = #{record.loginAccount,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      login_password = #{record.loginPassword,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      unit_id = #{record.unitId,jdbcType=VARCHAR},
+      is_active = #{record.isActive,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="top.actualself.springboot.demo_interceptor.model.User" >
-    update tb_user
+    update user_info
     <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+      <if test="loginAccount != null" >
+        login_account = #{loginAccount,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
+      <if test="loginPassword != null" >
+        login_password = #{loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="created != null" >
-        created = #{created,jdbcType=TIMESTAMP},
+      <if test="unitId != null" >
+        unit_id = #{unitId,jdbcType=VARCHAR},
       </if>
-      <if test="updated != null" >
-        updated = #{updated,jdbcType=TIMESTAMP},
+      <if test="isActive != null" >
+        is_active = #{isActive,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="top.actualself.springboot.demo_interceptor.model.User" >
-    update tb_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      created = #{created,jdbcType=TIMESTAMP},
-      updated = #{updated,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    update user_info
+    set login_account = #{loginAccount,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      unit_id = #{unitId,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

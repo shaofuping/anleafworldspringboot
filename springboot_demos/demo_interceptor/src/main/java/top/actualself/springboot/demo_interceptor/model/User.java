@@ -1,75 +1,73 @@
 package top.actualself.springboot.demo_interceptor.model;
 
-import java.util.Date;
-
 public class User {
-    private Long id;
+    private Integer id;
 
-    private String username;
+    private String loginAccount;
 
-    private String password;
+    private String userName;
 
-    private String phone;
+    private String loginPassword;
 
-    private String email;
+    private String mobile;
 
-    private Date created;
+    private String unitId;
 
-    private Date updated;
+    private Integer isActive;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLoginAccount() {
+        return loginAccount;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setLoginAccount(String loginAccount) {
+        this.loginAccount = loginAccount == null ? null : loginAccount.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getPhone() {
-        return phone;
+    public String getLoginPassword() {
+        return loginPassword;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword == null ? null : loginPassword.trim();
     }
 
-    public String getEmail() {
-        return email;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+    public void setMobile(String mobile) {
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public Date getCreated() {
-        return created;
+    public String getUnitId() {
+        return unitId;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setUnitId(String unitId) {
+        this.unitId = unitId == null ? null : unitId.trim();
     }
 
-    public Date getUpdated() {
-        return updated;
+    public Integer getIsActive() {
+        return isActive;
     }
 
-    public void setUpdated(Date updated) {
-        this.updated = updated;
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 }

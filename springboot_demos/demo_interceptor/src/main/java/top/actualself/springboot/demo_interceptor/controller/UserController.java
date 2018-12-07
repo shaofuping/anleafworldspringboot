@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("getUser")
     @ApiOperation(value = "获取用户", notes = "获取用户")
-    public User getUser(Long id) {
+    public User getUser(Integer id) {
         //该线程调用底层查询方法
         Runnable run = new Runnable() {
             @Override
@@ -33,7 +33,7 @@ public class UserController {
             }
         };
         ExecutorService executorService = Executors.newFixedThreadPool(8);
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100; i++) {
             executorService.submit(run);
 
         }
@@ -49,7 +49,7 @@ public class UserController {
 
     @PostMapping("delUser")
     @ApiOperation(value = "删除用户", notes = "删除用户")
-    public WidelyResult delUser(Long id) {
+    public WidelyResult delUser(Integer id) {
         return userService.delUserById(id);
     }
 
