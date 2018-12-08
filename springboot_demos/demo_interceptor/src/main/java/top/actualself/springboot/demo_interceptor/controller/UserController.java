@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("getUser")
+    @PostMapping("/getUser")
     @ApiOperation(value = "获取用户", notes = "获取用户")
     public User getUser(Integer id) {
         //该线程调用底层查询方法
@@ -41,19 +41,19 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping("getAllUserPaging")
+    @PostMapping("/getAllUserPaging")
     @ApiOperation(value = "获取所有用户分页显示", notes = "获取所有用户")
     public List<User> getAllUser(Integer page, Integer row) {
         return userService.getAllUser(page, row);
     }
 
-    @PostMapping("delUser")
+    @PostMapping("/delUser")
     @ApiOperation(value = "删除用户", notes = "删除用户")
     public WidelyResult delUser(Integer id) {
         return userService.delUserById(id);
     }
 
-    @PostMapping("modifyUser")
+    @PostMapping("/modifyUser")
     @ApiOperation(value = "修改用户", notes = "修改用户")
     public WidelyResult modifyUser(User user) {
         return userService.modifyUser(user);
