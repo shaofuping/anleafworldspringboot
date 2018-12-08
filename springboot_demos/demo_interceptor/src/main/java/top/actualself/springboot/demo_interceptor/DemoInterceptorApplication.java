@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @MapperScan("top.actualself.springboot.demo_interceptor.dao")
-@ServletComponentScan("top.actualself.springboot.demo_interceptor.servlet")
+@ServletComponentScan(basePackages = {"top.actualself.springboot.demo_interceptor.servlet","top.actualself.springboot.demo_interceptor.filter"})
 public class DemoInterceptorApplication {
 
     public static void main(String[] args) {
